@@ -20,7 +20,7 @@ task("deploy", "Deploys Token.sol contract").setAction(async function (
   
   await token.waitForDeployment();
 
-  console.log(`Token Contract deployed to address: ${token.address}`);
+  console.log(`Token Contract deployed to address: ${await token.getAddress()}`);
 });
 
 /** @type import('hardhat/config').HardhatUserConfig */
@@ -33,7 +33,9 @@ module.exports = {
     },
   },
   networks: {
+    sepolia: {
 
+    },
   },
   gasReporter: {
     enabled: true,
