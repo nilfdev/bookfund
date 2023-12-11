@@ -10,7 +10,7 @@ describe("Token Mint", function () {
   it("Should be possible for the contract owner to mint new tokens", async function () {
     accounts = await ethers.getSigners();
     contractFactory = await ethers.getContractFactory("Token");
-    token = await contractFactory.deploy(5000000, "NiceToken", "NTKN", 18);
+    token = await contractFactory.deploy(5000000, "NiceToken", "NTKN", 18, 5010000);
     await token.waitForDeployment();
     lucas = accounts[1];
 
@@ -49,5 +49,11 @@ describe("Token Mint", function () {
 
   it("Should not be possible for a regular account to mint new tokens", async function () {
     await expect(token.connect(lucas).mint(await lucas.getAddress(), 15000)).to.be.reverted;
+  });
+
+  it("Should not be possible for to mint more then defined in total cap ", async function () {
+    let totalSupply = await token.totalSupply();
+    let cap = await token.cap();
+    await expect(token.mint(await lucas.getAddress(), 1)).to.be.reverted;
   });
 });

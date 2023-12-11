@@ -13,7 +13,7 @@ describe("Token Transfers", function () {
   it("Should be possible for the owner transfer tokens to another account", async function () {
     accounts = await ethers.getSigners();
     contractFactory = await ethers.getContractFactory("Token");
-    token = await contractFactory.deploy(5000000, "NiceToken", "NTKN", 18);
+    token = await contractFactory.deploy(5000000, "NiceToken", "NTKN", 18, 5000001);
     await token.waitForDeployment();
     owner = accounts[0];
     lucas = accounts[1];

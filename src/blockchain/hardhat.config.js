@@ -15,7 +15,7 @@ task("deploy", "Deploys Token.sol contract").setAction(async function (
 ) {
   const [deployer] = await hre.ethers.getSigners();
   const Token = await hre.ethers.getContractFactory("Token", deployer);
-  const token = await Token.deploy(5000000, "NiceToken", "NTKN", 18);
+  const token = await Token.deploy(5000000, "NiceToken", "NTKN", 18, 5000001);
   await token.waitForDeployment();
   console.log(`Token Contract deployed to address: ${await token.getAddress()}`);
 });

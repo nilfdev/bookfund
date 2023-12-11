@@ -4,15 +4,17 @@ pragma solidity ^0.8.19;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Capped.sol";
 
-contract Token is Ownable, ERC20 {
+contract Token is Ownable, ERC20Capped {
     uint8 private _decimals;
 
     constructor(
         uint256 initialSupply, 
         string memory tokenName, 
         string memory tokenSymbol, 
-        uint8 tokenDecimals) Ownable (msg.sender) ERC20(tokenName, tokenSymbol) {
+        uint8 tokenDecimals,
+        uint256 cap) Ownable (msg.sender) ERC20(tokenName, tokenSymbol) ERC20Capped(cap){
         _decimals = tokenDecimals;
         _mint(msg.sender, initialSupply);
     }
