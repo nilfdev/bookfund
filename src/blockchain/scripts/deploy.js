@@ -1,7 +1,11 @@
 const hre = require("hardhat");
+const { ethers } = require("ethers");
 
 async function main() {
-  const token = await hre.ethers.deployContract("Token", [5000000, "NiceToken", "NTKN", 18, 5000001]);
+  const initialSupply = BigInt(1000000) * (BigInt(10) ** BigInt(18));
+  const totalSupply = BigInt(100000000) * (BigInt(10) ** BigInt(18));
+ 
+  const token = await hre.ethers.deployContract("Token", [initialSupply, "LitCoin", "LIT", 18, totalSupply]);
   await token.waitForDeployment();
   console.log(`Deployed to ${token.target}; Address: ${await token.getAddress()}`);
 }

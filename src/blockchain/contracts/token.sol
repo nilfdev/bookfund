@@ -23,8 +23,8 @@ contract Token is Ownable, ERC20Capped {
         return _decimals;
     }
 
-    function burn(address account, uint256 amount) public onlyOwner returns (bool) {
-        _burn(account, amount);
+    function burn(uint256 amount) public onlyOwner returns (bool) {
+        _burn(msg.sender, amount);
         return true;
     }
 

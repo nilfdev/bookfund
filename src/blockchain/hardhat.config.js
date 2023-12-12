@@ -1,6 +1,7 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("hardhat-gas-reporter");
 require("dotenv").config();
+require("ethers")
 
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   const accounts = await hre.ethers.getSigners();
@@ -9,16 +10,29 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   }
 });
 
-task("deploy", "Deploys Token.sol contract").setAction(async function (
-  taskArguments,
-  hre
-) {
-  const [deployer] = await hre.ethers.getSigners();
-  const Token = await hre.ethers.getContractFactory("Token", deployer);
-  const token = await Token.deploy(5000000, "NiceToken", "NTKN", 18, 5000001);
-  await token.waitForDeployment();
-  console.log(`Token Contract deployed to address: ${await token.getAddress()}`);
-});
+// task("deploy", "Deploys Token.sol contract").setAction(async function (
+//   taskArguments,
+//   hre
+// ) {
+//   const [deployer] = await hre.ethers.getSigners();
+//   const Token = await hre.ethers.getContractFactory("Token", deployer);
+//   const token = await Token.deploy(5000000, "LitCoin", "NTKN", 18, 5000001);
+//   await token.waitForDeployment();
+//   console.log(`Token Contract deployed to address: ${await token.getAddress()}`);
+// });
+
+// task("mint", "Mint extra tokens", async (taskArgs, hre) => {
+//   const contractFactory = await hre.ethers.getContractFactory("Token");
+//   const contract = contractFactory.attach(
+//     "0x3e48793E04F2A51630a2206af4FE21b30F1894Cf" 
+//   );
+
+//   const receiverAddress = "0x40d5cE228763a62cc5370B1A03B76F8Badf0e216"
+//   const amount = 1
+
+//   // Now you can call functions of the contract
+//   await contract.mint(receiverAddress, amount);
+// });
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {

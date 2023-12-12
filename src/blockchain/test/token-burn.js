@@ -30,7 +30,7 @@ describe("Token Burn", function () {
         "Owner balance has not the correct initial supply"
     );
     
-    await token.burn(await owner.getAddress(), 10000);
+    await token.burn(10000);
 
     totalSupply = await token.totalSupply();
     ownerBalance = await token.balanceOf(await owner.getAddress());
@@ -50,6 +50,6 @@ describe("Token Burn", function () {
 
   it("Should not be possible for a regular account to burn tokens", async function () {
     lucas = accounts[1];
-    await expect(token.connect(lucas).burn(await owner.getAddress(), 15000)).to.be.reverted;
+    await expect(token.connect(lucas).burn(15000)).to.be.reverted;
   });
 });

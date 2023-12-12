@@ -13,6 +13,11 @@ npx hardhat node
 npx hardhat run scripts/deploy.js
 
 DEPLOY
+via deploy
 npx hardhat run scripts/deploy.js --network sepolia
+
+via config
 npx hardhat deploy --network sepolia
+npx hardhat mint --network sepolia
+
 ```
