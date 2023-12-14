@@ -47,12 +47,14 @@ module.exports = {
     sepolia: {
       chainId: parseInt(process.env.CHAIN_ID),
       url: process.env.URL,
-      accounts: [process.env.PRIVATE_KEY]
+      accounts: [process.env.PRIVATE_KEY],
+      gasPrice: 30000000000,
     },
   },
   gasReporter: {
     enabled: true,
     currency: "USD",
+    token: "ETH",
     coinmarketcap: [process.env.COINMARKETCAP]
   }
 };
