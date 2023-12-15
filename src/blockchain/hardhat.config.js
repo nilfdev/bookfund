@@ -1,4 +1,5 @@
 require("@nomicfoundation/hardhat-toolbox");
+require("@nomicfoundation/hardhat-verify");
 require("hardhat-gas-reporter");
 require("dotenv").config();
 require("ethers")
@@ -48,7 +49,15 @@ module.exports = {
       chainId: parseInt(process.env.CHAIN_ID),
       url: process.env.URL,
       accounts: [process.env.PRIVATE_KEY],
-      gasPrice: 30000000000,
+      gas: 32000,
+      gasPrice: 30000000000
+    },
+    mainnet: {
+      chainId: parseInt(process.env.CHAIN_ID),
+      url: process.env.URL,
+      accounts: [process.env.PRIVATE_KEY],
+      gas: 32000,
+      gasPrice: 30000000000
     },
   },
   gasReporter: {
@@ -56,5 +65,11 @@ module.exports = {
     currency: "USD",
     token: "ETH",
     coinmarketcap: [process.env.COINMARKETCAP]
+  },
+  etherscan: {
+    apiKey: process.env.ETHERSCAN_API_KEY, // Your Etherscan API key
+  },
+  sourcify: {
+    enabled: true
   }
 };

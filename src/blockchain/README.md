@@ -21,3 +21,9 @@ npx hardhat deploy --network sepolia
 npx hardhat mint --network sepolia
 
 ```
+
+verify contract 
+
+```
+npx hardhat verify --network mainnet --constructor-args arguments.js 0xd06e0317d437d6b80d6a0493b7ea24b36b5b50c9
+```
